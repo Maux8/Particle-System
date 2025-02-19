@@ -11,6 +11,7 @@ ParticleManager::ParticleManager(sf::RenderWindow& renderWindow, sf::Vector2f gr
 
 void ParticleManager::addParticle(Particle particle) {
     particle.setPosition(window.getSize().x / 2, 100);
+    particle.prevPosition = particle.getPosition();
     particles.push_back(particle);
     particleAmount++;
 }
