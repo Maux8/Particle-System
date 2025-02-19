@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/mika/Programmieren/C++/SFML/ParticleSystem/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/ParticleSystem.dir/main.cpp.o -c /home/mika/Programmieren/C++/SFML/ParticleSystem/main.cpp",
+  "file": "/home/mika/Programmieren/C++/SFML/ParticleSystem/main.cpp",
+  "output": "CMakeFiles/ParticleSystem.dir/main.cpp.o"
+},
+{
+  "directory": "/home/mika/Programmieren/C++/SFML/ParticleSystem/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/ParticleSystem.dir/particle.cpp.o -c /home/mika/Programmieren/C++/SFML/ParticleSystem/particle.cpp",
+  "file": "/home/mika/Programmieren/C++/SFML/ParticleSystem/particle.cpp",
+  "output": "CMakeFiles/ParticleSystem.dir/particle.cpp.o"
+},
+{
+  "directory": "/home/mika/Programmieren/C++/SFML/ParticleSystem/build",
+  "command": "/usr/bin/c++   -g -o CMakeFiles/ParticleSystem.dir/particleManager.cpp.o -c /home/mika/Programmieren/C++/SFML/ParticleSystem/particleManager.cpp",
+  "file": "/home/mika/Programmieren/C++/SFML/ParticleSystem/particleManager.cpp",
+  "output": "CMakeFiles/ParticleSystem.dir/particleManager.cpp.o"
+}
+]
