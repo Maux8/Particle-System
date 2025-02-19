@@ -11,8 +11,9 @@ class Particle : public sf::CircleShape {
         
         Particle(float radius, float mass, sf::Color color);
 
+        // compute next position via verlet integration
         void update(sf::Vector2f sumOfAllForces, float deltaTime);
-        void checkWindowBounds(const sf::RenderWindow& window, sf::Vector2f& gravity);
+        void checkWindowBounds(const sf::RenderWindow& window);
 
 
 };

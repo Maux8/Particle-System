@@ -31,7 +31,7 @@ void ParticleManager::applyForce(float deltaTime) {
     }
 
     for(Particle& particle : particles) {
-        particle.checkWindowBounds(window, gravity);
+        particle.checkWindowBounds(window);
         particle.update(totalForce, deltaTime);
     }
 }
