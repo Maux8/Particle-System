@@ -5,10 +5,11 @@
 #include "myMath.h"
 
 int main() {
-    sf::Vector2f gravity = sf::Vector2f(0.0f, 100.0f);
+    sf::Vector2f gravity = sf::Vector2f(0.0f, 300.0f);
     float mass = 1.0f;
-    float pullStength = 150.0f;
-    float radius = 20.0f;
+    float sideStength = 200.0f;
+    float centerStrength = 1000.0f;
+    float radius = 10.0f;
     bool leftForceOn = false;
     bool rightForceOn = false;
 
@@ -55,14 +56,18 @@ int main() {
                 // a to turn on left force
                 else if (event.key.scancode == sf::Keyboard::Scan::A && !leftForceOn) {
                     leftForceOn = true;
-                    sf::Vector2f force = sf::Vector2f(-pullStength, 0);
+                    sf::Vector2f force = sf::Vector2f(-sideStength, 0);
                     pm.addForce(force, "leftForce");
                 }
                 // d to turn on right force
                 else if (event.key.scancode == sf::Keyboard::Scan::D && !rightForceOn) {
                     rightForceOn = true;
-                    sf::Vector2f force = sf::Vector2f(pullStength, 0);
+                    sf::Vector2f force = sf::Vector2f(sideStength, 0);
                     pm.addForce(force, "rightForce");
+                }
+                // s to turn on center force
+                else if(event.key.scancode == sf::Keyboard::Scan::S) {
+                    pm.applyForceTowards(centerPoint, centerStrength, deltaTime);
                 }
             }
             else if (event.type == sf::Event::KeyReleased) {

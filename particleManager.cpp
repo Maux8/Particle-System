@@ -40,6 +40,7 @@ void ParticleManager::applyForceTowards(sf::Vector2f point, float strength, floa
     for (Particle& particle : particles) {
         sf::Vector2f direction = point - particle.getPosition();
         direction = normalize(direction) * strength;
+        particle.checkWindowBounds(window);
         particle.update(direction, deltaTime);
     }
 }
