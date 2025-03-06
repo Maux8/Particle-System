@@ -43,7 +43,7 @@ inline sf::Vector2f normalize(const sf::Vector2f& vector) {
 }
 
 // Distance
-inline float distance(const sf::Vector2f& firstPoint, const sf::Vector2f& secondPoint) {
+inline float distanceBetween(const sf::Vector2f& firstPoint, const sf::Vector2f& secondPoint) {
     return magnitude(firstPoint - secondPoint);
 }
 

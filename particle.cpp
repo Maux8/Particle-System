@@ -1,18 +1,23 @@
 #include "particle.h"
 #include "myMath.h"
 
-Particle::Particle(float radius, float mass, sf::Color color) 
+Particle::Particle(float radius, float mass, sf::Color color, bool pinned, float x, float y) 
 : sf::CircleShape(radius) {
+    sf::Vector2f position(x, y);
+    this->setPosition(position);
     this->mass = mass;
+    this->pinned = pinned;
     this->setFillColor(color);
 }
 
 void Particle::update(sf::Vector2f sumOfAllForces, float deltaTime) {
-    sf::Vector2f position = this->getPosition();
-    sf::Vector2f acceleration = sumOfAllForces / this->mass;
-    sf::Vector2f velocity = this->getPosition() - this->prevPosition;
-    this->prevPosition = this->getPosition();
-    this->setPosition(this->getPosition() + velocity + acceleration * deltaTime * deltaTime);
+    if (!this->pinned) {
+        sf::Vector2f position = this->getPosition();
+        sf::Vector2f acceleration = sumOfAllForces / this->mass;
+        sf::Vector2f velocity = this->getPosition() - this->prevPosition;
+        this->prevPosition = this->getPosition();
+        this->setPosition(this->getPosition() + velocity + acceleration * deltaTime * deltaTime);
+    }
 }
 
 void Particle::constrain(const sf::RenderWindow& window) {

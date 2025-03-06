@@ -19,21 +19,16 @@ class ParticleManager {
         ParticleManager(sf::RenderWindow& window, sf::Vector2f gravity);
 
         void addStick(std::unique_ptr<Stick> stick);
-
         void remAllSticks();
 
         std::shared_ptr<Particle> addParticle(std::shared_ptr<Particle> particle);
-
         void remAllParticles();
 
         void addForce(sf::Vector2f force, std::string name);
-
         void remForce(std::string name);
-
         /// @brief apply general force to all particles
         /// @param deltaTime 
         void applyForce(float deltaTime);
-
         /// @brief apply specific force towards a specific point to all particles
         /// @param point 
         /// @param strength 
@@ -43,6 +38,8 @@ class ParticleManager {
         /// @brief checks for collisions between particles
         /// @param deltatTime 
         void checkCollision(float deltatTime);
+
+        void spawnRectangleWithAnchor(float mass, float radius);
 
         void draw();
     

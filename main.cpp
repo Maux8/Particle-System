@@ -14,7 +14,7 @@ int main() {
     bool leftForceOn = false;
     bool rightForceOn = false;
 
-    sf::RenderWindow window(sf::VideoMode(1500,900), "Particle System", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(2000,1500), "Particle System", sf::Style::Close);
     window.setFramerateLimit(120);
     sf::Clock clock;
 
@@ -50,7 +50,7 @@ int main() {
             if (event.type == sf::Event::KeyPressed) {
                 //spacebar to spawn particles
                 if (event.key.scancode == sf::Keyboard::Scan::Space) {
-                    auto particle = std::make_shared<Particle>(radius, mass, sf::Color::White);
+                    auto particle = std::make_shared<Particle>(radius, mass, sf::Color::White, false, window.getSize().x / 2, 100);
                     pm.addParticle(particle);
                 }   
                 // a to turn on left force
@@ -93,13 +93,16 @@ int main() {
                 // release w to spawn to particles with a stick between them 
                 else if (event.key.scancode == sf::Keyboard::Scan::W)  {
 
-                    auto particle1 = std::make_shared<Particle>(radius, mass, sf::Color::White);
-                    auto particle2 = std::make_shared<Particle>(radius, mass, sf::Color::White);
+                    auto particle1 = std::make_shared<Particle>(radius, mass, sf::Color::White, false, window.getSize().x / 2, 100);
+                    auto particle2 = std::make_shared<Particle>(radius, mass, sf::Color::White, false, window.getSize().x / 2 + 300, 400);
                     pm.addParticle(particle1);
-                    particle1->move(sf::Vector2f(10, 10));
                     pm.addParticle(particle2);
-                    auto stick = std::make_unique<Stick>(particle1, particle2, distance(particle1->getPosition(), particle2->getPosition()), window);
+                    auto stick = std::make_unique<Stick>(particle1, particle2, 300, window);
                     pm.addStick(std::move(stick));
+                }
+                // release T to spawn a rectangle with anchor
+                else if (event.key.scancode == sf::Keyboard::Scan::T) {
+                    pm.spawnRectangleWithAnchor(mass, radius);
                 }
             }
         }

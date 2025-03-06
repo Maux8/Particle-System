@@ -6,10 +6,10 @@ class Particle : public sf::CircleShape {
     
     public:
         sf::Vector2f prevPosition;
-
+        bool pinned;
         float mass;
         
-        Particle(float radius, float mass, sf::Color color);
+        Particle(float radius, float mass, sf::Color color, bool pinned, float x, float y);
 
         /// @brief compute next position via verlet integration
         /// @param sumOfAllForces 

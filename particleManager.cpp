@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <array>
 #include "particleManager.h"
 #include "particle.h"
 #include "stick.h"
@@ -20,7 +21,6 @@ void ParticleManager::remAllSticks() {
 
 std::shared_ptr<Particle> ParticleManager::addParticle(std::shared_ptr<Particle> particle) {
     particle->setOrigin(particle->getRadius(), particle->getRadius());
-    particle->setPosition(window.getSize().x / 2, 100);
     particle->prevPosition = particle->getPosition();
     particles.push_back(particle);
     particleAmount++;
@@ -95,6 +95,33 @@ void ParticleManager::checkCollision(float deltaTime) {
                 particles[j]->setPosition(particles[j]->getPosition() + correction);
             }
         }
+    }
+}
+
+void ParticleManager::spawnRectangleWithAnchor(float mass, float radius) {
+    std::array _particles = {
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 200), // A
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 200), // B
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 500), // C
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 500), // D
+        std::make_shared<Particle>(radius, mass, sf::Color::White, true, window.getSize().x / 2, 50)  // Anchor
+    };
+
+    std::array _sticks = {
+        std::make_unique<Stick>(_particles[0], _particles[1], 300.0f, window), // A to B
+        std::make_unique<Stick>(_particles[1], _particles[2], 300.0f, window), // B to C
+        std::make_unique<Stick>(_particles[2], _particles[3], 300.0f, window), // C to D
+        std::make_unique<Stick>(_particles[3], _particles[0], 300.0f, window), // D to A
+        std::make_unique<Stick>(_particles[0], _particles[2], 424.264068712f, window), // A to C
+        std::make_unique<Stick>(_particles[1], _particles[4], 400.0f, window), // B to Anchor
+    };
+
+    for (auto& particle : _particles) {
+        this->addParticle(particle);
+    }
+
+    for (auto& stick : _sticks) {
+        this->addStick(std::move(stick));
     }
 }
 
