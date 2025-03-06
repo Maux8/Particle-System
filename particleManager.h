@@ -17,12 +17,25 @@ class ParticleManager {
 
         void addParticle(Particle particle);
 
+        void remAllParticles();
+
         void addForce(sf::Vector2f force, std::string name);
+
         void remForce(std::string name);
 
+        /// @brief apply general force to all particles
+        /// @param deltaTime 
         void applyForce(float deltaTime);
 
+        /// @brief apply specific force towards a specific point to all particles
+        /// @param point 
+        /// @param strength 
+        /// @param deltaTime 
         void applyForceTowards(sf::Vector2f point, float strength, float deltaTime);
+
+        /// @brief checks for collisions between particles
+        /// @param deltatTime 
+        void checkCollision(float deltatTime);
 
         void drawParticles();
     

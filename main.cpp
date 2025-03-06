@@ -9,7 +9,7 @@ int main() {
     float mass = 1.0f;
     float sideStength = 200.0f;
     float centerStrength = 1000.0f;
-    float radius = 10.0f;
+    float radius = 30.0f;
     bool leftForceOn = false;
     bool rightForceOn = false;
 
@@ -80,6 +80,14 @@ int main() {
                 else if (event.key.scancode == sf::Keyboard::Scan::D && rightForceOn) {
                     rightForceOn = false;
                     pm.remForce("rightForce");
+                }
+                // release r to remove all particles
+                else if (event.key.scancode == sf::Keyboard::Scan::R) {
+                    pm.remAllParticles();
+                }
+                // release q to close the window
+                else if (event.key.scancode == sf::Keyboard::Scan::Q) {
+                    window.close();
                 }
             }
         }
