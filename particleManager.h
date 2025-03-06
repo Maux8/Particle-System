@@ -2,20 +2,27 @@
 #define PARTICLEMANAGER_H
 #include <vector>
 #include <map>
+#include <memory>
 #include <SFML/Graphics.hpp>
 #include "particle.h"
+#include "stick.h"
 
 class ParticleManager {
 
     public:
         int particleAmount = 0; 
         sf::Vector2f gravity;
-        std::vector<Particle> particles;
+        std::vector<std::shared_ptr<Particle>> particles;
+        std::vector<std::unique_ptr<Stick>> sticks;
         std::map<std::string, sf::Vector2f> forces;
         
         ParticleManager(sf::RenderWindow& window, sf::Vector2f gravity);
 
-        void addParticle(Particle particle);
+        void addStick(std::unique_ptr<Stick> stick);
+
+        void remAllSticks();
+
+        std::shared_ptr<Particle> addParticle(std::shared_ptr<Particle> particle);
 
         void remAllParticles();
 
@@ -37,7 +44,7 @@ class ParticleManager {
         /// @param deltatTime 
         void checkCollision(float deltatTime);
 
-        void drawParticles();
+        void draw();
     
     private:
         sf::RenderWindow& window;

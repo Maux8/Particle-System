@@ -15,7 +15,7 @@ void Particle::update(sf::Vector2f sumOfAllForces, float deltaTime) {
     this->setPosition(this->getPosition() + velocity + acceleration * deltaTime * deltaTime);
 }
 
-void Particle::checkWindowBounds(const sf::RenderWindow& window) {
+void Particle::constrain(const sf::RenderWindow& window) {
     float restituion = 0.9f; // how much of the energy gets transmitted when bouncing off the wall
     sf::Vector2f position = this->getPosition();
     sf::Vector2f velocity = position - this->prevPosition;
@@ -40,9 +40,4 @@ void Particle::checkWindowBounds(const sf::RenderWindow& window) {
     } 
 }
 
-void Particle::constrain() {
-    sf::Vector2f velocity = this->getPosition() - this->prevPosition;
-
-    
-}
 

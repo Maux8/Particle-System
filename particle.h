@@ -15,8 +15,8 @@ class Particle : public sf::CircleShape {
         /// @param sumOfAllForces 
         /// @param deltaTime 
         void update(sf::Vector2f sumOfAllForces, float deltaTime);
-        void checkWindowBounds(const sf::RenderWindow& window);
-        void constrain();
+        void constrain(const sf::RenderWindow& window);
+
 
 };
 

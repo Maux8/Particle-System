@@ -22,10 +22,7 @@ int main() {
     pm.addForce(gravity, "gravity");
     sf::Vector2f leftPoint(150, window.getSize().y / 2);
     sf::Vector2f rightPoint(window.getSize().x - 150, window.getSize().y / 2);
-    sf::Vector2f centerPoint(window.getSize().x / 2, window.getSize().y / 2);
-
-    Stick stick1(leftPoint, rightPoint, magnitude(leftPoint-rightPoint), window);
-    
+    sf::Vector2f centerPoint(window.getSize().x / 2, window.getSize().y / 2);    
 
     sf::Font font;
     sf::Text text;
@@ -53,8 +50,7 @@ int main() {
             if (event.type == sf::Event::KeyPressed) {
                 //spacebar to spawn particles
                 if (event.key.scancode == sf::Keyboard::Scan::Space) {
-                    Particle particle(radius, mass, sf::Color::White);
-                    particle.setOrigin(radius, radius);
+                    auto particle = std::make_shared<Particle>(radius, mass, sf::Color::White);
                     pm.addParticle(particle);
                 }   
                 // a to turn on left force
@@ -85,13 +81,25 @@ int main() {
                     rightForceOn = false;
                     pm.remForce("rightForce");
                 }
-                // release r to remove all particles
+                // release r to remove all particles and sticks
                 else if (event.key.scancode == sf::Keyboard::Scan::R) {
                     pm.remAllParticles();
+                    pm.remAllSticks();
                 }
                 // release q to close the window
                 else if (event.key.scancode == sf::Keyboard::Scan::Q) {
                     window.close();
+                }
+                // release w to spawn to particles with a stick between them 
+                else if (event.key.scancode == sf::Keyboard::Scan::W)  {
+
+                    auto particle1 = std::make_shared<Particle>(radius, mass, sf::Color::White);
+                    auto particle2 = std::make_shared<Particle>(radius, mass, sf::Color::White);
+                    pm.addParticle(particle1);
+                    particle1->move(sf::Vector2f(10, 10));
+                    pm.addParticle(particle2);
+                    auto stick = std::make_unique<Stick>(particle1, particle2, distance(particle1->getPosition(), particle2->getPosition()), window);
+                    pm.addStick(std::move(stick));
                 }
             }
         }
@@ -99,8 +107,7 @@ int main() {
         window.clear();
 
         pm.applyForce(deltaTime);
-        pm.drawParticles();
-        stick1.render();
+        pm.draw();
         
         std::stringstream ss;
         ss << "Particles: " << pm.particleAmount;
