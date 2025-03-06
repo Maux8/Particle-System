@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/mika/Programmieren/C++/SFML/ParticleSystem/main.cpp" "CMakeFiles/ParticleSystem.dir/main.cpp.o" "gcc" "CMakeFiles/ParticleSystem.dir/main.cpp.o.d"
   "/home/mika/Programmieren/C++/SFML/ParticleSystem/particle.cpp" "CMakeFiles/ParticleSystem.dir/particle.cpp.o" "gcc" "CMakeFiles/ParticleSystem.dir/particle.cpp.o.d"
   "/home/mika/Programmieren/C++/SFML/ParticleSystem/particleManager.cpp" "CMakeFiles/ParticleSystem.dir/particleManager.cpp.o" "gcc" "CMakeFiles/ParticleSystem.dir/particleManager.cpp.o.d"
+  "/home/mika/Programmieren/C++/SFML/ParticleSystem/stick.cpp" "CMakeFiles/ParticleSystem.dir/stick.cpp.o" "gcc" "CMakeFiles/ParticleSystem.dir/stick.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

@@ -575,6 +575,30 @@ particleManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParticleSystem.dir/build.make CMakeFiles/ParticleSystem.dir/particleManager.cpp.s
 .PHONY : particleManager.cpp.s
 
+stick.o: stick.cpp.o
+.PHONY : stick.o
+
+# target to build an object file
+stick.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParticleSystem.dir/build.make CMakeFiles/ParticleSystem.dir/stick.cpp.o
+.PHONY : stick.cpp.o
+
+stick.i: stick.cpp.i
+.PHONY : stick.i
+
+# target to preprocess a source file
+stick.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParticleSystem.dir/build.make CMakeFiles/ParticleSystem.dir/stick.cpp.i
+.PHONY : stick.cpp.i
+
+stick.s: stick.cpp.s
+.PHONY : stick.s
+
+# target to generate assembly for a file
+stick.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ParticleSystem.dir/build.make CMakeFiles/ParticleSystem.dir/stick.cpp.s
+.PHONY : stick.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -622,6 +646,9 @@ help:
 	@echo "... particleManager.o"
 	@echo "... particleManager.i"
 	@echo "... particleManager.s"
+	@echo "... stick.o"
+	@echo "... stick.i"
+	@echo "... stick.s"
 .PHONY : help
 
 

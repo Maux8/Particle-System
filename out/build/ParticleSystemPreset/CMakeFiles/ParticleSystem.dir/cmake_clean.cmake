@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ParticleSystem.dir/particle.cpp.o.d"
   "CMakeFiles/ParticleSystem.dir/particleManager.cpp.o"
   "CMakeFiles/ParticleSystem.dir/particleManager.cpp.o.d"
+  "CMakeFiles/ParticleSystem.dir/stick.cpp.o"
+  "CMakeFiles/ParticleSystem.dir/stick.cpp.o.d"
   "ParticleSystem"
   "ParticleSystem.pdb"
 )

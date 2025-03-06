@@ -3,12 +3,14 @@
 #include "particle.h"
 #include "particleManager.h"
 #include "myMath.h"
+#include "stick.h"
 
 int main() {
-    sf::Vector2f gravity = sf::Vector2f(0.0f, 100.0f);
+    sf::Vector2f gravity = sf::Vector2f(0.0f, 300.0f);
     float mass = 1.0f;
-    float pullStength = 150.0f;
-    float radius = 20.0f;
+    float sideStength = 200.0f;
+    float centerStrength = 1000.0f;
+    float radius = 30.0f;
     bool leftForceOn = false;
     bool rightForceOn = false;
 
@@ -21,6 +23,9 @@ int main() {
     sf::Vector2f leftPoint(150, window.getSize().y / 2);
     sf::Vector2f rightPoint(window.getSize().x - 150, window.getSize().y / 2);
     sf::Vector2f centerPoint(window.getSize().x / 2, window.getSize().y / 2);
+
+    Stick stick1(leftPoint, rightPoint, magnitude(leftPoint-rightPoint), window);
+    
 
     sf::Font font;
     sf::Text text;
@@ -55,14 +60,18 @@ int main() {
                 // a to turn on left force
                 else if (event.key.scancode == sf::Keyboard::Scan::A && !leftForceOn) {
                     leftForceOn = true;
-                    sf::Vector2f force = sf::Vector2f(-pullStength, 0);
+                    sf::Vector2f force = sf::Vector2f(-sideStength, 0);
                     pm.addForce(force, "leftForce");
                 }
                 // d to turn on right force
                 else if (event.key.scancode == sf::Keyboard::Scan::D && !rightForceOn) {
                     rightForceOn = true;
-                    sf::Vector2f force = sf::Vector2f(pullStength, 0);
+                    sf::Vector2f force = sf::Vector2f(sideStength, 0);
                     pm.addForce(force, "rightForce");
+                }
+                // s to turn on center force
+                else if(event.key.scancode == sf::Keyboard::Scan::S) {
+                    pm.applyForceTowards(centerPoint, centerStrength, deltaTime);
                 }
             }
             else if (event.type == sf::Event::KeyReleased) {
@@ -76,6 +85,14 @@ int main() {
                     rightForceOn = false;
                     pm.remForce("rightForce");
                 }
+                // release r to remove all particles
+                else if (event.key.scancode == sf::Keyboard::Scan::R) {
+                    pm.remAllParticles();
+                }
+                // release q to close the window
+                else if (event.key.scancode == sf::Keyboard::Scan::Q) {
+                    window.close();
+                }
             }
         }
 
@@ -83,6 +100,7 @@ int main() {
 
         pm.applyForce(deltaTime);
         pm.drawParticles();
+        stick1.render();
         
         std::stringstream ss;
         ss << "Particles: " << pm.particleAmount;
