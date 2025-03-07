@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include <array>
+#include <cmath>
 #include "particleManager.h"
 #include "particle.h"
 #include "stick.h"
@@ -55,7 +56,7 @@ void ParticleManager::applyForce(float deltaTime) {
         particle->update(totalForce, deltaTime);
     }
     // uncommont this line to activate collision detection
-    //checkCollision(deltaTime);
+    checkCollision(deltaTime);
 }
 
 void ParticleManager::applyForceTowards(sf::Vector2f point, float strength, float deltaTime) {
@@ -76,12 +77,12 @@ void ParticleManager::checkCollision(float deltaTime) {
 
             if (distance < minDistance) {
                 sf::Vector2f collisionDirection = normalize(difference);
-                sf::Vector2f relativeVelocity = (particles[i]->prevPosition - particles[j]->prevPosition);
-                float velocityAlongDirection = dot(relativeVelocity, collisionDirection);
+                sf::Vector2f relativeVelocity = (particles[i]->prevPosition - particles[j]->prevPosition); // Calculate relative velocity
+                float velocityAlongDirection = magnitude(project(relativeVelocity, collisionDirection)); // Project relative velocity onto collision direction
 
-                if (velocityAlongDirection > 0) return;
+                if (velocityAlongDirection < 0) return; // If moving apart, no collision response needed
 
-                float restitution = 0.5f; // Coefficient of restitution (elastic collision)
+                float restitution = 1.0f; // Coefficient of restitution 
                 float impulseScalar = restitution * velocityAlongDirection / (particles[i]->mass + particles[j]->mass);
 
                 sf::Vector2f impulse = -impulseScalar * collisionDirection;
@@ -100,20 +101,20 @@ void ParticleManager::checkCollision(float deltaTime) {
 
 void ParticleManager::spawnRectangleWithAnchor(float mass, float radius) {
     std::array _particles = {
-        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 200), // A
-        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 200), // B
-        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 500), // C
-        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 500), // D
-        std::make_shared<Particle>(radius, mass, sf::Color::White, true, window.getSize().x / 2, 50)  // Anchor
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 200),                    // A
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 200),                    // B
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 500, 500),                    // C
+        std::make_shared<Particle>(radius, mass, sf::Color::White, false, 200, 500),                    // D
+        std::make_shared<Particle>(radius, mass, sf::Color::White, true, window.getSize().x / 2, 50)    // Anchor
     };
 
     std::array _sticks = {
-        std::make_unique<Stick>(_particles[0], _particles[1], 300.0f, window), // A to B
-        std::make_unique<Stick>(_particles[1], _particles[2], 300.0f, window), // B to C
-        std::make_unique<Stick>(_particles[2], _particles[3], 300.0f, window), // C to D
-        std::make_unique<Stick>(_particles[3], _particles[0], 300.0f, window), // D to A
-        std::make_unique<Stick>(_particles[0], _particles[2], 424.264068712f, window), // A to C
-        std::make_unique<Stick>(_particles[1], _particles[4], 400.0f, window), // B to Anchor
+        std::make_unique<Stick>(_particles[0], _particles[1], 300.0f, window),          // A to B
+        std::make_unique<Stick>(_particles[1], _particles[2], 300.0f, window),          // B to C
+        std::make_unique<Stick>(_particles[2], _particles[3], 300.0f, window),          // C to D
+        std::make_unique<Stick>(_particles[3], _particles[0], 300.0f, window),          // D to A
+        std::make_unique<Stick>(_particles[0], _particles[2], 424.264068712f, window),  // A to C
+        std::make_unique<Stick>(_particles[1], _particles[4], 700.0f, window),          // B to Anchor
     };
 
     for (auto& particle : _particles) {

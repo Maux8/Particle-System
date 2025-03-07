@@ -44,5 +44,3 @@ void Particle::constrain(const sf::RenderWindow& window) {
         this->prevPosition.y = this->getPosition().y + velocity.y * restituion;
     } 
 }
-
-

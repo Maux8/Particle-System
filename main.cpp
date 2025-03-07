@@ -6,15 +6,16 @@
 #include "stick.h"
 
 int main() {
-    sf::Vector2f gravity = sf::Vector2f(0.0f, 300.0f);
-    float mass = 1.0f;
+    float mass = 10.0f;
+    float gravityStrength = mass * 200.0f;
+    sf::Vector2f gravity = sf::Vector2f(0.0f, gravityStrength);
     float sideStength = 200.0f;
     float centerStrength = 1000.0f;
     float radius = 30.0f;
     bool leftForceOn = false;
     bool rightForceOn = false;
 
-    sf::RenderWindow window(sf::VideoMode(2000,1500), "Particle System", sf::Style::Close);
+    sf::RenderWindow window(sf::VideoMode(2500,1500), "Particle System", sf::Style::Close);
     window.setFramerateLimit(120);
     sf::Clock clock;
 
@@ -48,49 +49,50 @@ int main() {
             }
 
             if (event.type == sf::Event::KeyPressed) {
-                //spacebar to spawn particles
+                // spacebar to spawn particles
                 if (event.key.scancode == sf::Keyboard::Scan::Space) {
                     auto particle = std::make_shared<Particle>(radius, mass, sf::Color::White, false, window.getSize().x / 2, 100);
                     pm.addParticle(particle);
+                
                 }   
-                // a to turn on left force
+                // A to turn on left force
                 else if (event.key.scancode == sf::Keyboard::Scan::A && !leftForceOn) {
                     leftForceOn = true;
                     sf::Vector2f force = sf::Vector2f(-sideStength, 0);
                     pm.addForce(force, "leftForce");
                 }
-                // d to turn on right force
+                // D to turn on right force
                 else if (event.key.scancode == sf::Keyboard::Scan::D && !rightForceOn) {
                     rightForceOn = true;
                     sf::Vector2f force = sf::Vector2f(sideStength, 0);
                     pm.addForce(force, "rightForce");
                 }
-                // s to turn on center force
+                // S to turn on center force
                 else if(event.key.scancode == sf::Keyboard::Scan::S) {
                     pm.applyForceTowards(centerPoint, centerStrength, deltaTime);
                 }
             }
             else if (event.type == sf::Event::KeyReleased) {
-                // release a to turn off left force
+                // release A to turn off left force
                 if (event.key.scancode == sf::Keyboard::Scan::A && leftForceOn) {
                     leftForceOn = false;
                     pm.remForce("leftForce");
                 }
-                // release d to turn off right force
+                // release D to turn off right force
                 else if (event.key.scancode == sf::Keyboard::Scan::D && rightForceOn) {
                     rightForceOn = false;
                     pm.remForce("rightForce");
                 }
-                // release r to remove all particles and sticks
+                // release R to remove all particles and sticks
                 else if (event.key.scancode == sf::Keyboard::Scan::R) {
                     pm.remAllParticles();
                     pm.remAllSticks();
                 }
-                // release q to close the window
+                // release Q to close the window
                 else if (event.key.scancode == sf::Keyboard::Scan::Q) {
                     window.close();
                 }
-                // release w to spawn to particles with a stick between them 
+                // release W to spawn two particles with a stick between them 
                 else if (event.key.scancode == sf::Keyboard::Scan::W)  {
 
                     auto particle1 = std::make_shared<Particle>(radius, mass, sf::Color::White, false, window.getSize().x / 2, 100);

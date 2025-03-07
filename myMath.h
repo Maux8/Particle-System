@@ -47,5 +47,20 @@ inline float distanceBetween(const sf::Vector2f& firstPoint, const sf::Vector2f&
     return magnitude(firstPoint - secondPoint);
 }
 
+// get angle between vectors A and B
+inline float getAngle(const sf::Vector2f& A, const sf::Vector2f& B) {
+    float cosineAngle = dot(A, B) / (magnitude(A) * magnitude(B));
+    float angleRadians = acos(cosineAngle);
+    float angleDegrees = angleRadians * (180 / M_PI);
+    return angleDegrees;
+}
+
+//  Project vector A onto vector B
+inline sf::Vector2f project(const sf::Vector2f& A, const sf::Vector2f& B) {
+    float dotProduct = dot(A, B);
+    float lengthOfB = magnitude(B);
+    return ((dotProduct / (lengthOfB * lengthOfB)) * B);
+}
+
 
 #endif
