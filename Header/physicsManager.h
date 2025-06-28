@@ -19,12 +19,11 @@ public:
     void addForce(string name, Vector2f force);
     void remForce(string name);
     void updateParticles();
-    void computeCollision(unique_ptr<Particle>& firstParticle,
-        unique_ptr<Particle>& secondParticle);
+    void computeCollision(const unsigned int i, const unsigned int j);
 
 private:
     map<std::string, sf::Vector2f> allForces;
-    vector<unique_ptr<Particle>>& allParticles;
+    vector<unique_ptr<Particle>>& particles;
 };
 
 #endif // PHYSICSMANAGER_H

@@ -6,7 +6,7 @@ using namespace sf;
 
 class Particle : public sf::CircleShape {
 public:
-    sf::Vector2f prevPosition;
+    Vector2f prevPosition;
     bool pinned;
     float mass;
 
@@ -15,6 +15,7 @@ public:
     // compute next position via verlet integration
     void update(sf::Vector2f sumOfAllForces, float deltaTime);
     void constrain(const sf::RenderWindow& window);
+    Vector2f getVelocity();
 };
 
 #endif

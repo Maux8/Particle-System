@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 16.0.2, 2025-06-20T20:53:34. -->
+<!-- Written by QtCreator 16.0.2, 2025-06-28T18:17:33. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -106,13 +106,13 @@
     <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
-    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Unix Makefiles
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
--DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+-DCMAKE_BUILD_TYPE:STRING=Debug
+-DCMAKE_GENERATOR:STRING=Unix Makefiles
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
--DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
--DCMAKE_BUILD_TYPE:STRING=Debug</value>
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mika/Desktop/Projects/build-Particle-System-Desktop-Debug</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -161,13 +161,13 @@
     <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
-    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Unix Makefiles
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
--DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+-DCMAKE_BUILD_TYPE:STRING=Release
+-DCMAKE_GENERATOR:STRING=Unix Makefiles
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
--DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
--DCMAKE_BUILD_TYPE:STRING=Release</value>
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mika/Desktop/Projects/build-Particle-System-Desktop-Release</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -214,13 +214,13 @@
     <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
-    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Unix Makefiles
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
--DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
+-DCMAKE_GENERATOR:STRING=Unix Makefiles
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
--DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
--DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo</value>
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mika/Desktop/Projects/build-Particle-System-Desktop-RelWithDebInfo</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">
@@ -267,13 +267,13 @@
     <value type="int" key="CMake.Configure.BaseEnvironment">2</value>
     <value type="bool" key="CMake.Configure.ClearSystemEnvironment">false</value>
     <valuelist type="QVariantList" key="CMake.Configure.UserEnvironmentChanges"/>
-    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_GENERATOR:STRING=Unix Makefiles
+    <value type="QString" key="CMake.Initial.Parameters">-DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
--DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
+-DCMAKE_BUILD_TYPE:STRING=MinSizeRel
+-DCMAKE_GENERATOR:STRING=Unix Makefiles
 -DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
 -DCMAKE_PREFIX_PATH:STRING=%{Qt:QT_INSTALL_PREFIX}
--DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
--DCMAKE_BUILD_TYPE:STRING=MinSizeRel</value>
+-DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}</value>
     <value type="QString" key="ProjectExplorer.BuildConfiguration.BuildDirectory">/home/mika/Desktop/Projects/build-Particle-System-Desktop-MinSizeRel</value>
     <valuemap type="QVariantMap" key="ProjectExplorer.BuildConfiguration.BuildStepList.0">
      <valuemap type="QVariantMap" key="ProjectExplorer.BuildStepList.Step.0">

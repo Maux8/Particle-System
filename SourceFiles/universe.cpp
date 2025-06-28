@@ -36,7 +36,9 @@ void Universe::LetThereBeLight()
                     mainWindow.close();
                 }
             } else if (Mouse::isButtonPressed(Mouse::Left)) {
-                particleManager.addParticle(mainWindow.mapPixelToCoords(Vector2i(Mouse::getPosition())));
+                Vector2i mousePos = Mouse::getPosition(mainWindow);
+                Vector2f mousePosFloat = Vector2f((float)mousePos.x, (float)mousePos.y);
+                particleManager.addParticle(mousePosFloat);
             }
         }
         // events finished

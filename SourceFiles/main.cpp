@@ -1,3 +1,4 @@
+#include "constants.h"
 #include "universe.h"
 
 #include <SFML/Graphics.hpp>
@@ -6,7 +7,7 @@ using namespace sf;
 
 int main()
 {
-    RenderWindow window(sf::VideoMode(2500, 1500), "Particle System", Style::Close);
+    RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_Height), "Particle System", Style::Close);
     window.setFramerateLimit(120);
     Text text;
     Universe universe = Universe(window, text);

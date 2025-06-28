@@ -19,8 +19,7 @@ ParticleManager::ParticleManager(sf::RenderWindow& renderWindow, PhysicsManager&
 
 void ParticleManager::addParticle(Vector2f position)
 {
-    Vector2f realPosition(position.x, position.y - 100);
-    auto particle = make_unique<Particle>(Color::White, false, realPosition);
+    auto particle = make_unique<Particle>(Color::White, false, position);
     particle->setOrigin(particle->getRadius(), particle->getRadius());
     particle->prevPosition = particle->getPosition();
     particles.push_back(std::move(particle));
@@ -42,7 +41,7 @@ void ParticleManager::checkCollision()
             float minDistance = particles[i]->getRadius() + particles[j]->getRadius();
 
             if (distance < minDistance) {
-                physicsManager.computeCollision(particles[i], particles[j]);
+                physicsManager.computeCollision(i, j);
             }
         }
     }

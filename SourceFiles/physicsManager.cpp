@@ -3,7 +3,7 @@
 #include "myMath.h"
 
 PhysicsManager::PhysicsManager(vector<unique_ptr<Particle>>& allParticlesRef)
-    : allParticles { allParticlesRef }
+    : particles { allParticlesRef }
 {
     allForces = std::map<std::string, sf::Vector2f>();
     // init gravity going down
@@ -18,36 +18,35 @@ void PhysicsManager::updateParticles()
         totalForce += pair.second;
     }
 
-    for (auto& particle : allParticles) {
+    for (auto& particle : particles) {
         particle->update(totalForce, deltaTime);
     }
 }
 
-void PhysicsManager::computeCollision(unique_ptr<Particle>& firstParticle,
-    unique_ptr<Particle>& secondParticle)
+void PhysicsManager::computeCollision(const unsigned int i, const unsigned int j)
 {
-    Vector2f difference = secondParticle->getPosition() - firstParticle->getPosition();
+    sf::Vector2f difference = particles[j]->getPosition() - particles[i]->getPosition();
     float distance = magnitude(difference);
-    float minDistance = firstParticle->getRadius() + secondParticle->getRadius();
+    float minDistance = particles[i]->getRadius() + particles[j]->getRadius();
 
     sf::Vector2f collisionDirection = normalize(difference);
-    sf::Vector2f relativeVelocity = (firstParticle->prevPosition - secondParticle->prevPosition); // Calculate relative velocity
+    sf::Vector2f relativeVelocity = (particles[i]->prevPosition - particles[j]->prevPosition); // Calculate relative velocity
     float velocityAlongDirection = magnitude(project(relativeVelocity, collisionDirection)); // Project relative velocity onto collision direction
 
     if (velocityAlongDirection < 0)
         return; // If moving apart, no collision response needed
 
-    float impulseScalar = 1.0f * velocityAlongDirection / (firstParticle->mass + secondParticle->mass);
+    float impulseScalar = RESTITUTION * velocityAlongDirection / (particles[i]->mass + particles[j]->mass);
 
     sf::Vector2f impulse = -impulseScalar * collisionDirection;
-    firstParticle->prevPosition -= impulse / firstParticle->mass;
-    secondParticle->prevPosition += impulse / secondParticle->mass;
+    particles[i]->prevPosition -= impulse / particles[i]->mass;
+    particles[j]->prevPosition += impulse / particles[j]->mass;
 
     // Correct positions to avoid overlap
     float overlap = minDistance - distance;
     sf::Vector2f correction = collisionDirection * (overlap / 2.0f);
-    firstParticle->setPosition(firstParticle->getPosition() - correction);
-    firstParticle->setPosition(firstParticle->getPosition() + correction);
+    particles[i]->setPosition(particles[i]->getPosition() - correction);
+    particles[j]->setPosition(particles[j]->getPosition() + correction);
 }
 
 void PhysicsManager::addForce(string name, Vector2f force)
