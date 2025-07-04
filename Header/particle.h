@@ -15,6 +15,7 @@ public:
     // compute next position via verlet integration
     void update(sf::Vector2f sumOfAllForces, float deltaTime);
     void constrain(const sf::RenderWindow& window);
+    void mapColorToSpeed();
     Vector2f getVelocity();
 };
 
